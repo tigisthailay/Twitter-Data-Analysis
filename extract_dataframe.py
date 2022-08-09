@@ -73,32 +73,36 @@ class TweetDfExtractor:
         return screen_name
 
     def find_followers_count(self)->list:
-        followers_count = [x['user']['followers_count'] for x in self.tweets]
+        followers_count = [tweets['user']['followers_count'] for tweets in self.tweets]
         
         return followers_count
 
     def find_friends_count(self)->list:
-        friends_count = []
-        for tweets in self.tweets_list:
-            friends_count.append(tweets['friends_count'])
+        friends_count = [tweets['user']['friends_count'] for tweets in self.tweets_list]
         
         return friends_count
     
     def is_sensitive(self)->list:
-        try:
-            is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
-        except KeyError:
-            is_sensitive = None
+        is_sensitive = []
+        for tweet in self.tweets_list:
+            if 'possibly_sensitive' in tweet.keys():
+                is_sensitive.append(tweet['possibly_sensitive'])
+            else: is_sensitive.append(None)
 
         return is_sensitive
 
     def find_favourite_count(self)->list:
-        fav_count = [tweets['fav_count'] for tweets in self.tweets_list]
+        favorite_count = [tweets.get('retweeted_status',{}).get('favorite_count',0) for tweets in self.tweets_list]
         
-        return fav_count
+        return favorite_count
     
     def find_retweet_count(self)->list:
-        retweet_count = [tweets['retweet_count'] for tweets in self.tweets_list]
+        retweet_count = []
+        for tweet in self.tweets_list:
+            if 'retweeted_status' in tweet.keys():
+                retweet_count.append(tweet['retweeted_status']['retweet_count'])
+            else: retweet_count.append(0)
+
         
         return retweet_count
     
