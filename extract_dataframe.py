@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 from textblob import TextBlob
-
+import zipfile
 
 def read_json(json_file: str)->list:
     """
@@ -36,8 +36,8 @@ class TweetDfExtractor:
 
     # an example function
     def find_statuses_count(self)->list:
-        statuses_count = [tweets['statuses_count'] for tweets in self.tweets_list]
-        
+        statuses_count = [tweets['user']['statuses_count'] for tweets in self.tweets_list] 
+
         return statuses_count
         
     def find_full_text(self)->list:
@@ -49,36 +49,13 @@ class TweetDfExtractor:
         return text
     
     def find_sentiments(self, text)->list:
-        
-        #def sentiment_analysis(tweet):
-        def getSubjectivity(text1)->list:
-            return TextBlob(text1).sentiment.subjectivity
-        
-        #Create a function to get the polarity
-        def getPolarity(text1)->list:
-            return TextBlob(text1).sentiment.polarity
-  
-        #Create two new columns ‘Subjectivity’ & ‘Polarity’
-        text['TextBlob_Subjectivity'] = text['text'].apply(getSubjectivity)
-        text ['TextBlob_Polarity'] = text['text'].apply(getPolarity)
-        def getAnalysis(score):
-            if score < 0:
-                return 'Negative'
-            elif score == 0:
-                return 'Neutral'
-            else:
-                return 'Positive'
-        tweet ['TextBlob_Analysis'] = text['TextBlob_Polarity'].apply(getAnalysis )
-        return text
-        #polarity = [tweets['polarity'] for tweets in self.tweets_list]
-        
-        #return polarity, self.subjectivity
+        polarity = [TextBlob(tweets).polarity for tweets in text]
+        subjectivity = [TextBlob(tweets).subjectivity for tweets in text]
+
+        return polarity, subjectivity
 
     def find_created_time(self)->list:
         created_at = [tweets['created_at'] for tweets in self.tweets_list]
-        #for tweets in self.tweets_list:
-            #created_at.append(tweets['created_at'])
-
        
         return created_at
 
@@ -91,16 +68,13 @@ class TweetDfExtractor:
         return source
 
     def find_screen_name(self)->list:
-        screen_name = []
-        for tweets in self.tweets_list:
-            screen_name.append(tweets['screen_name'])
+        screen_name = [tweets['user']['screen_name'] for tweets in self.tweets_list]
             
         return screen_name
 
     def find_followers_count(self)->list:
-        followers_count = []
-        for tweets in self.tweets_list:
-            followers_count.append(tweets['followers_count'])
+        followers_count = [x['user']['followers_count'] for x in self.tweets]
+        
         return followers_count
 
     def find_friends_count(self)->list:
