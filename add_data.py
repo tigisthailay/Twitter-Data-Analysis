@@ -56,7 +56,7 @@ def insert_to_tweet_table(dbName: str, df: pd.DataFrame, table_name: str) -> Non
     conn, cur = DBConnect(dbName)
 
     df = preprocess_df(df)
-
+        #column precidence is mandatory
     for _, row in df.iterrows():
         sqlQuery = f"""INSERT INTO TweetDataTable (created_at, source, subjectivity, polarity, language,
                     favorite_count, retweet_count, followers_count, friends_count,
