@@ -59,7 +59,11 @@ class TestTweetDfExtractor(unittest.TestCase):
          self.assertEqual(self.df.find_statuses_count(), [8097, 5831, 1627, 1627, 18958])
 
 
-    #
+    def test_find_full_text(self):
+        text = text = [
+                "RT @i_ameztoy: Extra random image (I):\n\nLets focus in one very specific zone of the western coast -&gt; Longjing District, Taichung #City, #Ta\u2026",
+                "RT @IndoPac_Info: #China's media explains the military reasons for each area of the drills in the #Taiwan Strait\n\nRead the labels in the pi\u2026",
+
 
      def test_find_sentiments(self):
          values = ([-0.125, -0.1, 0.0, 0.1, -6.938893903907228e-18],
