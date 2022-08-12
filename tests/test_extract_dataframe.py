@@ -100,8 +100,8 @@ class TestTweetDfExtractor(unittest.TestCase):
     def test_find_location(self):
         self.assertEqual(self.df.find_location(), ['', '', 'Netherlands', 'Netherlands', 'Ayent, Schweiz'])
 
-    # def test_find_hashtags(self):
-    #     self.assertEqual(self.df.find_hashtags(), ['City','China, Taiwan','XiJinping','XiJinping',''])
+    def test_find_hashtags(self):
+        self.assertEqual(self.df.find_hashtags(), ['City','China, Taiwan','XiJinping','XiJinping',''])
 
     # def test_find_mentions(self):
     #     self.assertEqual(self.df.find_mentions(), )
