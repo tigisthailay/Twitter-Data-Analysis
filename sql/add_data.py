@@ -102,7 +102,7 @@ def db_execute_fetch(*args, many=False, tablename='', rdf=True, **kwargs) -> pd.
     if rdf:
         return pd.DataFrame(res, columns=field_names)
     else:
-        #return res
+        return res
 if __name__ == "__main__":
     print("sucessfully")
     dbName='twitter'
