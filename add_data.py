@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import mysql.connector as mysql
-from mysql.connector #import Error
+from mysql.connector import Error
 
 def DBConnect(dbName=None):
     conn = mysql.connect(host='localhost', user='root', password='mommissedu',
