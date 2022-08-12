@@ -56,7 +56,7 @@ def wordCloud():
     wc = WordCloud(width=650, height=450, background_color='white', min_font_size=5).generate(cleanText)
     st.title("Tweet Text Word Cloud")
     st.image(wc.to_array())
-
+#defining stbarchart
 def stBarChart():
     df = loadData()
     dfCount = pd.DataFrame({'Tweet_count': df.groupby(['hashtags'])['clean_text'].count()}).reset_index()
