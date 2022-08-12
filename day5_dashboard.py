@@ -19,7 +19,7 @@ def selectHashTag():
     if hashTags:
         df = df[np.isin(df, hashTags).any(axis=1)]
         st.write(df)
-
+#defining location and Auth
 def selectLocAndAuth():
     df = loadData()
     location = st.multiselect("choose Location of tweets", list(df['place'].unique()))
