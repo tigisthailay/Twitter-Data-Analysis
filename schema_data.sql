@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS TweetDataTable
 (
     `id` INT NOT NULL AUTO_INCREMENT,
     `created_at` TEXT NOT NULL,
-    `source` VARCHAR(200) NOT NULL,
+#    `source` VARCHAR(200) NOT NULL,
     `original_author` TEXT DEFAULT NULL,
     `subjectivity` FLOAT DEFAULT NULL,
     `polarity` FLOAT DEFAULT NULL,
