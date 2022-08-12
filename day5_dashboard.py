@@ -37,7 +37,7 @@ def selectLocAndAuth():
         st.write(df)
     else:
         st.write(df)
-
+#defining barchart
 def barChart(data, title, X, Y):
     title = title.title()
     st.title(f'{title} Chart')
