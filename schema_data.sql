@@ -1,4 +1,4 @@
-#CREATE TABLE IF NOT EXISTS TweetDataTable 
+CREATE TABLE IF NOT EXISTS TweetDataTable 
 (
     `id` INT NOT NULL AUTO_INCREMENT,
     `created_at` TEXT NOT NULL,
